@@ -1,16 +1,15 @@
 import React from 'react'
 import Button from './Button'
 
-export const Header = () => {
-    const onClick = () => {
-        console.log('click')
-    }
+export const Header = ({onAdd, showAdd}) => {
+
 
     return (
         <header className='header'>
             Task Tracker
-            <Button onClick={onClick} />
+            <Button text={showAdd ? 'Close' : 'Add'} color ={showAdd ? 'red' : 'green'} onClick={onAdd} />
         </header>
     )
 }
 
+export default Header
