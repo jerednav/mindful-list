@@ -1,6 +1,6 @@
 import { Route, Switch } from 'react-router-dom'
 //Route defines different paths in the URL, and which component should be loaded
-import Home from './pages/Home'
+import Home from './pages/Notes'
 import NewTask from './pages/NewTask'
 import Search from './pages/Search'
 
