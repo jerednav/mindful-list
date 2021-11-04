@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route } from 'react-router-dom'
+//Route defines different paths in the URL, and which component should be loaded
+import Home from './pages/Home'
+import NewTask from './pages/NewTask'
+import Search from './pages/Search'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Route path ='/'>
+        <Home />
+      </Route>
+      <Route path ='/newtask'>
+        <NewTask />
+      </Route>
+      <Route path ='/search'>
+        <Search />
+      </Route>
+    
     </div>
   );
 }
