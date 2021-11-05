@@ -5,8 +5,9 @@ function App() {
   const [tasks, setTasks] = useState();
 
   return (
-    <div className='container'>
+    <div>
       <Header />
+    <div
     </div>
   );
 }
