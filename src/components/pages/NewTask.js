@@ -1,7 +1,14 @@
 import React from "react";
+import NewTaskForm from "../NewTaskForm";
 
 function NewTask() {
-  return <div>New Task page</div>;
+  return (
+    <div>
+      <div class='newTask'>
+        <NewTaskForm />
+      </div>
+    </div>
+  );
 }
 
 export default NewTask;
