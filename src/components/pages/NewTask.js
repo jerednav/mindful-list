@@ -1,13 +1,10 @@
 import React from "react";
-import NewTaskForm from "../NewTaskForm";
 
 function NewTask() {
   return (
-    <div>
-      <div class='newTask'>
-        <NewTaskForm />
-      </div>
-    </div>
+    <form>
+      <input type='text' placeholder='Enter task' />
+    </form>
   );
 }
 

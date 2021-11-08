@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { Header } from "./components/Header";
+import NewTask from "./components/pages/NewTask";
+import Navbar from "./components/layout/Navbar";
 
 function App() {
   const [tasks, setTasks] = useState();
 
   return (
     <div>
-      <Header />
+      <Navbar />
+      <NewTask />
     </div>
   );
 }
