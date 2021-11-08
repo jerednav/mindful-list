@@ -1,0 +1,25 @@
+.navContainer {
+  padding: 20px;
+}
+
+.navWrapper {
+  padding: 10px;
+  display: flex;
+}
+
+.logo {
+  flex: 5;
+}
+
+.menu {
+  flex: 5;
+}
+
+.navList {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+ul {
+  list-style: none;
+}
