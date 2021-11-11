@@ -1,7 +1,7 @@
 import React from "react";
 
-function Notes() {
-  return <div>Notes page</div>;
+function Tasks() {
+  return <div>Tasks page</div>;
 }
 
-export default Notes;
+export default Tasks;
