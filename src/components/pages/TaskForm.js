@@ -3,7 +3,7 @@ import "./TaskForm.css";
 import { useState } from "react";
 
 const TaskForm = (props) => {
-  const [enteredTitle, setEnteredTitle] = useState();
+  const [enteredTitle, setEnteredTitle] = useState("");
 
   const titleChangeHandler = (e) => {
     setEnteredTitle(e.target.value);
