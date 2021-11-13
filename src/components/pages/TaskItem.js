@@ -13,7 +13,6 @@ const TaskItem = (props) => {
   return (
     <div className='task-items'>
       <h2>{title}</h2>
-      <button onClick={clickHandler}> Add Task</button>
     </div>
   );
 };

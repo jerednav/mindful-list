@@ -29,9 +29,6 @@ const TaskForm = (props) => {
           onChange={titleChangeHandler}
         />
       </div>
-      <div className='new-task-action'>
-        <button type='submit'>Add Task</button>
-      </div>
     </form>
   );
 };
