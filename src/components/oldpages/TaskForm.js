@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import "./TaskForm.css";
-import { useState } from "react";
 
 const TaskForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -13,6 +12,7 @@ const TaskForm = (props) => {
     e.preventDefault();
     const taskData = {
       title: enteredTitle,
+      completed: false,
     };
 
     props.onSaveTaskData(taskData);

@@ -1,41 +1,19 @@
-import { useState } from "react";
-import NewTask from "./components/pages/NewTask";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SignIn from "./components/Auth/SignIn";
+import Tasks from "./components/Tasks";
 import Navbar from "./components/layout/Navbar";
-import Tasks from "./components/pages/Tasks";
-
-const DUMMY_TASKS = [
-  {
-    id: "e1",
-    title: "Pick up dog food",
-    completed: false,
-  },
-  {
-    id: "e2",
-    title: "Do Laundry",
-    completed: true,
-  },
-  {
-    id: "e3",
-    title: "Buy groceries",
-    completed: false,
-  },
-];
+import SignUp from "./components/Auth/SignUp";
 
 function App() {
-  const [tasks, setTasks] = useState(DUMMY_TASKS);
-
-  const addTaskHandler = (task) => {
-    setTasks((prevTasks) => {
-      return [task, ...prevTasks];
-    });
-  };
-
   return (
-    <div>
+    <BrowserRouter>
       <Navbar />
-      <NewTask onAddTask={addTaskHandler} />
-      <Tasks items={tasks} />
-    </div>
+      <Routes>
+        <Route path='/signin' element={<SignIn />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route exact path='/' element={<Tasks />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
