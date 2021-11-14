@@ -21,7 +21,7 @@ const index = () => {
 
   const handleSignOut = () => {
     //signOut the user
-    navigate.push("/signin");
+    navigate("signin");
   };
 
   return (
@@ -33,10 +33,24 @@ const index = () => {
               mindful list
             </Link>
           </Typography>
-          <Typography variant='subtitle2' className={classes.root}>
+          <Typography
+            variant='subtitle2'
+            className={classes.root}
+            color='inherit'
+          >
             Logged in as Ace
           </Typography>
-          <Button onClcik={() => handleSignOut()}>SignOut</Button>
+          <Button onClick={() => handleSignOut()}>SignOut</Button>
+          <Button>
+            <Link to='/signin' className={classes.linkStyle}>
+              Sign In
+            </Link>
+          </Button>
+          <Button>
+            <Link to='/signup/' className={classes.linkStyle}>
+              Sign Up
+            </Link>
+          </Button>
         </Toolbar>
       </AppBar>
     </>
