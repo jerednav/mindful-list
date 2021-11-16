@@ -9,14 +9,17 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/tasks", tasks);
+
 app.get("/", (req, res) => {
   res.send("Welcome to Mindful List API!");
 });
 
-const PORT = process.env.PORT || 3000;
+const connection_string = process.env.CONNECTION_STRING;
+const port = process.env.PORT || 3000;
 
 mongoose
-  .connect(process.env.CONNECTION_STRING, {
+  .connect(connection_string, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -24,5 +27,5 @@ mongoose
   .catch((err) => console.log(err));
 
 app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+  console.log(`Server is running on ${port} 3000`);
 });
