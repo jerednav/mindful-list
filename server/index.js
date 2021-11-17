@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 const connection_string = process.env.CONNECTION_STRING;
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 mongoose
   .connect(connection_string, {
@@ -30,6 +30,6 @@ mongoose
   .then(console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
-app.listen(3000, () => {
-  console.log(`Server is running on ${port} 3000`);
+app.listen(4000, () => {
+  console.log(`Server is running on ${port}`);
 });

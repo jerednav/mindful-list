@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
   let task = new Task({
     name,
     author,
-    isComplete,
+    isComplete, 
     date,
     uid,
   });

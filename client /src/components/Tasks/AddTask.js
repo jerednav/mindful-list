@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
+
+import { addTask } from '../../store/actions/taskActions'
+
 
 const useStyles = makeStyles({
   formStyle: {
@@ -19,16 +24,35 @@ const useStyles = makeStyles({
 
 const AddTask = () => {
   const classes = useStyles();
+  const dispatch = useDispatch()
+  const [task, setTask] = useState({
+    name: "",
+    isComplete: false
+  })
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(addTask(task))
+    
+    setTask({
+      name: "",
+      isComplete: false
+    })
+  }
 
   return (
     <>
-      <form noValidate autoComplete='off' className={classes.formStyle}>
-        <TextField id='enter-todo' label='enterTodo' autoFocus fullWidth />
+      <form noValidate autoComplete='off' className={classes.formStyle} onSubmit = {handleSubmit}>
+        <TextField id='enter-todo' label='enterTodo' autoFocus fullWidth 
+           value={task.name}
+           onChange={(e) => setTask({...task, name: e.target.value, date: new Date() })}/>
         <Button
           color='primary'
           variant='contained'
           type='submit'
           className={classes.submitButton}
+    
+
         >
           <Send />
         </Button>
