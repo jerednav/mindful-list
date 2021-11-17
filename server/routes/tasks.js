@@ -1,12 +1,14 @@
 const Task = require("../models/Task");
+const auth = require("../middleware/auth");
 const express = require("express");
 const Joi = require("joi");
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res, next) => {
   try {
     const todos = await Task.find().sort({ date: -1 });
+    console.log(req.user);
 
     res.send(todos);
   } catch (error) {

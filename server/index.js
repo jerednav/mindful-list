@@ -3,6 +3,8 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const tasks = require("./routes/tasks");
+const signUp = require("./routes/signup");
+const signIn = require("./routes/signin");
 
 require("dotenv").config();
 
@@ -10,6 +12,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/tasks", tasks);
+app.use("/api/signup", signUp);
+app.use("/api/signin", signIn);
 
 app.get("/", (req, res) => {
   res.send("Welcome to Mindful List API!");
