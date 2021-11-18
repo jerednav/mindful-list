@@ -29,7 +29,7 @@ const TaskList = ({task, setTask}) => {
     <>
       <div className={classes.todosStyle}>
         <Typography variant='h5'>
-        { tasks.length > 0 ? "theTasks" : "noTodosYet" }
+        { tasks.length > 0 ? "Inbox" : "No tasks yet" }
         </Typography>
         {tasks && tasks.map((task)=> {
           return (

@@ -10,11 +10,15 @@ const useStyles = makeStyles((theme) => ({
   },
   linkStyle: {
     textDecoration: "none",
-    color: "#fafafa",
+    color: "black",
   },
   authButton: {
     flexGrow: 1,
   },
+  navBar: {
+    backgroundColor: '#f4f4f6',
+    color: "black"
+  }
 }));
 
 const NavBar = () => {
@@ -27,10 +31,10 @@ const NavBar = () => {
   return (
     <>
       <AppBar position='static'>
-        <Toolbar>
+        <Toolbar className={classes.navBar}>
           <Typography variant='h4' className={classes.root}>
             <Link className={classes.linkStyle} to='/'>
-              Mindful notes
+              Mindful List
             </Link>
           </Typography>
           <Typography variant='subtitle2' className={classes.root}>
