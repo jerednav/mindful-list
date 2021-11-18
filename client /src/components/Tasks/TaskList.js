@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from 'react-redux'
 import { Typography } from "@material-ui/core";
 import Task from "./Task";
 import { makeStyles } from "@material-ui/styles";
+
+import { getTasks } from '../../store/actions/taskActions'
 
 const useStyles = makeStyles({
   todosStyle: {
@@ -12,13 +15,31 @@ const useStyles = makeStyles({
   },
 });
 
-const TaskList = () => {
+const TaskList = ({setTask}) => {
   const classes = useStyles();
+  const dispatch = useDispatch()
+  const tasks = useSelector((state)=> state.tasks)
+  console.log(tasks)
+    
+    useEffect(() => {
+      dispatch(getTasks())
+    }, [dispatch])
+
   return (
     <>
       <div className={classes.todosStyle}>
-        <Typography variant='h5'>the Tasks</Typography>
-        <Task />
+        <Typography variant='h5'>
+        { tasks.length > 0 ? "theTasks" : "noTodosYet" }
+        </Typography>
+        {tasks && tasks.map((task)=> {
+          return (
+            <Task 
+            task={task}
+            key={task._id}
+            setTask={setTask}
+            />
+          )
+        })}
       </div>
     </>
   );

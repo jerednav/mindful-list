@@ -1,11 +1,10 @@
-import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 
-import { addTask } from '../../store/actions/taskActions'
+import { addTask, updateTask} from '../../store/actions/taskActions'
 
 
 const useStyles = makeStyles({
@@ -22,17 +21,32 @@ const useStyles = makeStyles({
   },
 });
 
-const AddTask = () => {
+const AddTask = ({task, setTask}) => {
   const classes = useStyles();
   const dispatch = useDispatch()
-  const [task, setTask] = useState({
-    name: "",
-    isComplete: false
-  })
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addTask(task))
+    if (task._id){
+      const id = task._id
+      const updatedTask = {
+        name: task.name,
+        isComplete: task.isComplete,
+        date: task.date,
+        author: 'Jered', 
+      }
+
+      dispatch(updateTask(updatedTask, id))
+
+    }else {
+      const newTask = {
+        ...task,
+        date: new Date()
+      }
+      dispatch(addTask(newTask))
+    }
+
+
     
     setTask({
       name: "",
@@ -45,7 +59,7 @@ const AddTask = () => {
       <form noValidate autoComplete='off' className={classes.formStyle} onSubmit = {handleSubmit}>
         <TextField id='enter-todo' label='enterTodo' autoFocus fullWidth 
            value={task.name}
-           onChange={(e) => setTask({...task, name: e.target.value, date: new Date() })}/>
+           onChange={(e) => setTask({...task, name: e.target.value })}/>
         <Button
           color='primary'
           variant='contained'
