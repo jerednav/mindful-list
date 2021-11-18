@@ -6,6 +6,9 @@ import SignUp from "./components/auth/SignUp";
 import { Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 const useStyles = makeStyles({
   contentStyle: {
     margin: "30px auto",
@@ -17,6 +20,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <ToastContainer />
       <Container maxWidth='md'>
         <Navbar />
         <Container className={classes.contentStyle} maxWidth='sm'>

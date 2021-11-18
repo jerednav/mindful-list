@@ -15,11 +15,11 @@ const useStyles = makeStyles({
   },
 });
 
-const TaskList = ({setTask}) => {
+const TaskList = ({task, setTask}) => {
   const classes = useStyles();
   const dispatch = useDispatch()
   const tasks = useSelector((state)=> state.tasks)
-  console.log(tasks)
+
     
     useEffect(() => {
       dispatch(getTasks())
@@ -37,6 +37,7 @@ const TaskList = ({setTask}) => {
             task={task}
             key={task._id}
             setTask={setTask}
+            tasks={tasks}
             />
           )
         })}

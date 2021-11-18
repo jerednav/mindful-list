@@ -11,7 +11,7 @@ const Tasks = () => {
   return (
     <>
       <AddTask task={task} setTask={setTask}/>
-      <TaskList setTask={setTask} />
+      <TaskList task={task} setTask={setTask} />
     </>
   );
 };
