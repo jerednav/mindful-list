@@ -1,11 +1,12 @@
 import axios from 'axios'
-import { url } from '../../api/'
+import { url, setHeaders } from '../../api/'
 import { toast } from 'react-toastify'
+
 
 export const getTasks = () => {
     return (dispatch) => {
         axios
-        .get(`${url}/tasks`)
+        .get(`${url}/tasks`, setHeaders())
         .then(tasks => {
             dispatch({
                 type: "GET_TASKS",
@@ -13,7 +14,7 @@ export const getTasks = () => {
             })
         })
         .catch(error => {
-            console.log(error.response)
+            console.log(error)
         })
     }
 }
@@ -21,8 +22,11 @@ export const getTasks = () => {
 
 export const addTask = (newTask) => {
     return (dispatch, getState) => {
+        const author = getState().auth.name
+        const uid = getState().auth._id
+
         axios
-        .post(`${url}/tasks`, newTask)
+        .post(`${url}/tasks`, {...newTask, author, uid}, setHeaders())
         .then((task) => {
             dispatch({
                 type: "ADD_TASK",
@@ -42,7 +46,7 @@ export const addTask = (newTask) => {
 export const updateTask = (updatedTask, id) => {
     return (dispatch) => {
         axios
-        .put(`${url}/tasks/${id}`, updatedTask)
+        .put(`${url}/tasks/${id}`, updatedTask, setHeaders())
         .then(task => {
             dispatch({
                 type: "UPDATE_TASK",
@@ -61,7 +65,7 @@ export const updateTask = (updatedTask, id) => {
 export const checkTask = (id) => {
     return (dispatch) => {
         axios
-        .patch(`${url}/tasks/${id}`, {} )
+        .patch(`${url}/tasks/${id}`, {}, setHeaders())
         .then(task => {
             dispatch({
                 type: "CHECK_TASK",
@@ -79,7 +83,7 @@ export const checkTask = (id) => {
 export const deleteTask = (id) => {
     return (dispatch) => {
         axios
-        .delete(`${url}/tasks/${id}`)
+        .delete(`${url}/tasks/${id}`, setHeaders())
         .then(() => {
             dispatch({
                 type: "DELETE_TASK",

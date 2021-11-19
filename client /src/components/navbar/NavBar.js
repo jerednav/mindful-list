@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 const NavBar = () => {
   const classes = useStyles();
   const state = useSelector(state => state)
+  const auth = useSelector(state => state.auth)
   console.log(state)
   const navigate = useNavigate();
   const dispatch = useDispatch()
@@ -44,12 +45,17 @@ const NavBar = () => {
               Mindful List
             </Link>
           </Typography>
+          { auth._id ? (
+            <>
           <Typography variant='subtitle2' className={classes.root}>
-            Logged in as Ace
+            Logged in as {auth.name}
           </Typography>
           <Button color='inherit' onClick={() => handleSignOut()}>
             Sign Out
           </Button>
+          </>
+          ): (
+            <>
           <Button className={classes.linkStyle} color='inherit'>
             <Link className={classes.linkStyle} to='/signin'>
               Sign In
@@ -60,6 +66,9 @@ const NavBar = () => {
               Sign Up
             </Link>
           </Button>
+          </>
+          )}
+
         </Toolbar>
       </AppBar>
     </>

@@ -33,7 +33,8 @@ const AddTask = ({task, setTask}) => {
         name: task.name,
         isComplete: task.isComplete,
         date: task.date,
-        author: 'Jered', 
+        author: task.author,
+        uid: task.uid 
       }
 
       dispatch(updateTask(updatedTask, id))
