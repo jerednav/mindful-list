@@ -13,9 +13,9 @@ router.post("/", async (req, res) => {
   });
 
   const { error } = schema.validate(req.body);
+
   if (error) return res.status(400).send(error.details[0].message);
 
-  try {
     let user = await User.findOne({ email: req.body.email });
 
     if (!user)
@@ -29,17 +29,14 @@ router.post("/", async (req, res) => {
     if (!validpassword)
       return res.status(400).send(400).send("Invalid email or password...");
 
-    const secretKey = process.env.SECRET_KEY;
+    const jwtSecretKey = process.env.TASK_APP_JWT_SECRET_KEY;
     const token = jwt.sign(
       { _id: user._id, name: user.name, email: user.email },
-      secretKey
+      jwtSecretKey
     );
 
     res.send(token);
-  } catch (error) {
-    res.status(500).send(error.message);
-    console.log(error.message);
-  }
+
 });
 
 module.exports = router;

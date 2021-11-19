@@ -7,17 +7,16 @@ const router = express.Router();
 
 router.get("/", auth, async (req, res, next) => {
   try {
-    const todos = await Task.find().sort({ date: -1 });
-    console.log(req.user);
-
-    res.send(todos);
+    const tasks = await Task.find().sort({ date: -1 });
+    const filteredTasks = tasks.filter(task => task.uid === req.user._id)
+    res.send(filteredTasks);
   } catch (error) {
     res.status(500).send(error.message);
     console.log(error.message);
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const schema = Joi.object({
     name: Joi.string().min(3).max(200).required(),
     author: Joi.string().min(3).max(30),
@@ -50,7 +49,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   try {
     const schema = Joi.object({
       name: Joi.string().min(3).max(200).required(),
@@ -68,6 +67,7 @@ router.put("/:id", async (req, res) => {
     const task = await Task.findById(req.params.id);
 
     if (!task) return res.status(404).send("Todo not found");
+    if (task.uid !== req.user._id) return res.status(401).send("Task update failed. Not authorized.")
 
     const { name, author, isComplete, date, uid } = req.body;
 
@@ -90,15 +90,18 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", auth, async (req, res) => {
   const task = await Task.findById(req.params.id);
 
   if (!task) return res.status(404).send("Todo not found");
+  if (task.uid !== req.user._id) return res.status(401).send("Task completion failed. Not authorized.")
 
   try {
     const updatedTask = await Task.findByIdAndUpdate(req.params.id, {
       isComplete: !task.isComplete,
-    });
+    },
+    {new: true}
+    );
 
     res.send(updatedTask);
   } catch (error) {
@@ -107,10 +110,11 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   const task = await Task.findById(req.params.id);
 
   if (!task) return res.status(404).send("Todo not found");
+  if (task.uid !== req.user._id) return res.status(401).send("Task deletion failed. Not authorized.")
 
   try {
     const deletedTask = await Task.findByIdAndDelete(req.params.id);

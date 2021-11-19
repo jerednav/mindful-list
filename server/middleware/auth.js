@@ -6,11 +6,9 @@ function auth(req, res, next) {
   if (!token) return res.status(401).send("Not authorized...");
 
   try {
-    const secretKey = process.env.SECRET_KEY;
-    const payload = jwt.verify(token, secretKey);
-
-    req.user = payload;
-
+    const jwtSecretKey = process.env.TASK_APP_JWT_SECRET_KEY;
+    const decoded = jwt.verify(token, jwtSecretKey);
+    req.user = decoded
     next();
   } catch (error) {
     res.status(400).send("Invalid token");
