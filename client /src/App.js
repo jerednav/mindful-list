@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignIn from "./components/auth/SignIn";
 import Tasks from "./components/Tasks/Tasks";
@@ -8,6 +10,7 @@ import { makeStyles } from "@material-ui/styles";
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { loadUser } from "./store/actions/authActions";
 
 const useStyles = makeStyles({
   contentStyle: {
@@ -17,6 +20,11 @@ const useStyles = makeStyles({
 
 function App() {
   const classes = useStyles();
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(loadUser())
+  }, [dispatch])
 
   return (
     <BrowserRouter>

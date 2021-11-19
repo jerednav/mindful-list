@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { Navigate} from 'react-router-dom'
+
+import { signIn } from "../../store/actions/authActions";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, TextField, Button } from "@material-ui/core";
@@ -17,10 +21,29 @@ const useStyles = makeStyles({
 
 const SignIn = () => {
   const classes = useStyles();
+  const auth = useSelector(state => state.auth)
+  const dispatch = useDispatch()
+  const [creds, setCreds] = useState({
+    email: "",
+    password: ""
+
+  })
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(signIn(creds))
+    setCreds({
+      email: "",
+      password: "",
+    })
+
+  }
+
+  if(auth._id) return <Navigate to="/" />
 
   return (
     <>
-      <form noValidate autoComplete='off' className={classes.formStyle}>
+      <form noValidate autoComplete='off' className={classes.formStyle} onSubmit={handleSubmit}>
         <Typography variant='h5'>signIn;</Typography>
         <TextField
           className={classes.spacing}
@@ -28,6 +51,8 @@ const SignIn = () => {
           label='enterEmail'
           variant='outlined'
           fullWidth
+          value={creds.email}
+          onChange={(e) => setCreds({...creds, email: e.target.value})}
         />
         <TextField
           className={classes.spacing}
@@ -36,6 +61,8 @@ const SignIn = () => {
           label='enterPassword'
           variant='outlined'
           fullWidth
+          value={creds.password}
+          onChange={(e) => setCreds({...creds, password: e.target.value})}
         />
         <Button
           variant='contained'

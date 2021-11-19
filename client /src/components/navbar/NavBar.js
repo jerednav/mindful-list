@@ -1,8 +1,11 @@
 import React from "react";
 
 import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
+import { useSelector, useDispatch} from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link, useNavigate } from "react-router-dom";
+
+import { signOut } from '../../store/actions/authActions'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,9 +26,13 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = () => {
   const classes = useStyles();
+  const state = useSelector(state => state)
+  console.log(state)
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const handleSignOut = () => {
+    dispatch(signOut())
     navigate("SignIn");
   };
   return (
