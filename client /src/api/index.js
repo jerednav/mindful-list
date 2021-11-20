@@ -1,4 +1,4 @@
-export const url = "http://localhost:4000/api"
+export const url = "https://jn-mindful-list.herokuapp.com/api"
 
 export const setHeaders = () => {
     const header = {
