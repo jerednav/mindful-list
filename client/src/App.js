@@ -7,9 +7,10 @@ import Navbar from "./components/navbar/NavBar";
 import SignUp from "./components/auth/SignUp";
 import { Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import Sidebar from "./components/Sidebar/Sidebar";
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { loadUser } from "./store/actions/authActions";
 
 const useStyles = makeStyles({
@@ -20,15 +21,16 @@ const useStyles = makeStyles({
 
 function App() {
   const classes = useStyles();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadUser())
-  }, [dispatch])
+    dispatch(loadUser());
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
-    <ToastContainer />
+      <ToastContainer />
+
       <Container maxWidth='md'>
         <Navbar />
         <Container className={classes.contentStyle} maxWidth='sm'>
