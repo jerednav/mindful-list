@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux"
-import { Navigate} from 'react-router-dom'
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 import { signIn } from "../../store/actions/authActions";
 
@@ -21,48 +21,51 @@ const useStyles = makeStyles({
 
 const SignIn = () => {
   const classes = useStyles();
-  const auth = useSelector(state => state.auth)
-  const dispatch = useDispatch()
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const [creds, setCreds] = useState({
     email: "",
-    password: ""
-
-  })
+    password: "",
+  });
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(signIn(creds))
+    e.preventDefault();
+    dispatch(signIn(creds));
     setCreds({
       email: "",
       password: "",
-    })
+    });
+  };
 
-  }
-
-  if(auth._id) return <Navigate to="/" />
+  if (auth._id) return <Navigate to='/inbox' />;
 
   return (
     <>
-      <form noValidate autoComplete='off' className={classes.formStyle} onSubmit={handleSubmit}>
-        <Typography variant='h5'>signIn;</Typography>
+      <form
+        noValidate
+        autoComplete='off'
+        className={classes.formStyle}
+        onSubmit={handleSubmit}
+      >
+        <Typography variant='h5'>Sign In</Typography>
         <TextField
           className={classes.spacing}
           id='enter-email'
-          label='enterEmail'
+          label='Enter email'
           variant='outlined'
           fullWidth
           value={creds.email}
-          onChange={(e) => setCreds({...creds, email: e.target.value})}
+          onChange={(e) => setCreds({ ...creds, email: e.target.value })}
         />
         <TextField
           className={classes.spacing}
           id='enter-password'
           type='password'
-          label='enterPassword'
+          label='Enter Password'
           variant='outlined'
           fullWidth
           value={creds.password}
-          onChange={(e) => setCreds({...creds, password: e.target.value})}
+          onChange={(e) => setCreds({ ...creds, password: e.target.value })}
         />
         <Button
           variant='contained'
@@ -70,7 +73,7 @@ const SignIn = () => {
           className={classes.spacing}
           type='submit'
         >
-          SignIn
+          Sign In
         </Button>
       </form>
     </>

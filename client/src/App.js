@@ -12,6 +12,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loadUser } from "./store/actions/authActions";
+import Home from "./components/home/Home";
 
 const useStyles = makeStyles({
   contentStyle: {
@@ -30,14 +31,14 @@ function App() {
   return (
     <BrowserRouter>
       <ToastContainer />
-
-      <Container maxWidth='md'>
+      <Container maxWidth='lg'>
         <Navbar />
-        <Container className={classes.contentStyle} maxWidth='sm'>
+        <Container className={classes.contentStyle} maxWidth='md'>
           <Routes>
             <Route path='/signin' element={<SignIn />} />
             <Route path='/signup' element={<SignUp />} />
-            <Route exact path='/' element={<Tasks />} />
+            <Route exact path='/' element={<Home />} />
+            <Route path='/inbox' element={<Tasks />} />
           </Routes>
         </Container>
       </Container>
