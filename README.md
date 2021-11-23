@@ -1,7 +1,7 @@
 
 # Mindful List
 ### Live link: [Mindful List](https://mindful-list-netlify.app)
-Mindful List ia minimal and simple app to organize and manage your tasks.
+Mindful List is minimal and simple app to organize and manage your tasks.
 
 
 <img width="1000" alt="Mindful List splash page" src="https://github.com/jerednav/mindful-list/blob/main/client/public/home.png">
