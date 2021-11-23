@@ -4,8 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 
-import { addTask, updateTask} from '../../store/actions/taskActions'
-
+import { addTask, updateTask } from "../../store/actions/taskActions";
 
 const useStyles = makeStyles({
   formStyle: {
@@ -21,53 +20,58 @@ const useStyles = makeStyles({
   },
 });
 
-const AddTask = ({task, setTask}) => {
+const AddTask = ({ task, setTask }) => {
   const classes = useStyles();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (task._id){
-      const id = task._id
+    if (task._id) {
+      const id = task._id;
       const updatedTask = {
         name: task.name,
         isComplete: task.isComplete,
         date: task.date,
         author: task.author,
-        uid: task.uid 
-      }
+        uid: task.uid,
+      };
 
-      dispatch(updateTask(updatedTask, id))
-
-    }else {
+      dispatch(updateTask(updatedTask, id));
+    } else {
       const newTask = {
         ...task,
-        date: new Date()
-      }
-      dispatch(addTask(newTask))
+        date: new Date(),
+      };
+      dispatch(addTask(newTask));
     }
 
-
-    
     setTask({
       name: "",
-      isComplete: false
-    })
-  }
+      isComplete: false,
+    });
+  };
 
   return (
     <>
-      <form noValidate autoComplete='off' className={classes.formStyle} onSubmit = {handleSubmit}>
-        <TextField id='enter-todo' label='enterTodo' autoFocus fullWidth 
-           value={task.name}
-           onChange={(e) => setTask({...task, name: e.target.value })}/>
+      <form
+        noValidate
+        autoComplete='off'
+        className={classes.formStyle}
+        onSubmit={handleSubmit}
+      >
+        <TextField
+          id='enter-todo'
+          label='Enter task'
+          autoFocus
+          fullWidth
+          value={task.name}
+          onChange={(e) => setTask({ ...task, name: e.target.value })}
+        />
         <Button
           color='primary'
           variant='contained'
           type='submit'
           className={classes.submitButton}
-    
-
         >
           <Send />
         </Button>
