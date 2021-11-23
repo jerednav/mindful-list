@@ -4,7 +4,7 @@
 Mindful List ia minimal and simple app to organize and manage your tasks.
 
 
-<img width="1440" alt="Mindful List splash page" src="https://github.com/jerednav/mindful-list/blob/main/client/public/home.png">
+<img width="1000" alt="Mindful List splash page" src="https://github.com/jerednav/mindful-list/blob/main/client/public/home.png">
 
 ***
 
