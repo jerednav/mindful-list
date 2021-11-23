@@ -2,11 +2,11 @@ import React from "react";
 import { Typography, Button, ButtonGroup } from "@material-ui/core";
 import { Create, Delete, CheckCircle } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/styles";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 
-import moment from 'moment'
+import moment from "moment";
 
-import {checkTask, deleteTask} from '../../store/actions/taskActions'
+import { checkTask, deleteTask } from "../../store/actions/taskActions";
 
 const useStyles = makeStyles({
   todoStyle: {
@@ -16,6 +16,7 @@ const useStyles = makeStyles({
     borderRadius: "9px",
     display: "flex",
     justifyContent: "space-between",
+    fontFamily: "M PLUS 2",
   },
   grayStyle: {
     color: "#8f8f8f",
@@ -33,54 +34,56 @@ const Task = ({ task, setTask, tasks }) => {
   const dispatch = useDispatch();
 
   const handleOnUpdateClick = (id) => {
-    const foundTask = tasks.find((task) => task._id === id)
-    setTask({ ...foundTask })
+    const foundTask = tasks.find((task) => task._id === id);
+    setTask({ ...foundTask });
 
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth'
-    })
-  }
+      behavior: "smooth",
+    });
+  };
 
-  const handleCheck =(id) => {
-    dispatch(checkTask(id))
-  }
-  const handleDelete =(id) => {
-    dispatch(deleteTask(id))
-  }
+  const handleCheck = (id) => {
+    dispatch(checkTask(id));
+  };
+  const handleDelete = (id) => {
+    dispatch(deleteTask(id));
+  };
 
   return (
     <>
       <div className={classes.todoStyle}>
         <div>
-          {task.isComplete ? (<Typography variant='subtitle1' className={classes.checked}>{task.name}</Typography> )
-          : (<Typography variant='subtitle1'>{task.name}</Typography>)
-        }
+          {task.isComplete ? (
+            <Typography variant='subtitle1' className={classes.checked}>
+              {task.name}
+            </Typography>
+          ) : (
+            <Typography variant='subtitle1'>{task.name}</Typography>
+          )}
           <Typography className={classes.grayStyle} variant='body2'>
-            Author: Jered
+            Author: {task.author}
           </Typography>
           <Typography className={classes.grayStyle} variant='body2'>
-            Added: { moment(task.date).fromNow()}
+            Added: {moment(task.date).fromNow()}
           </Typography>
         </div>
 
         <div>
           <ButtonGroup size='small' aria-label='outlined primary button group'>
-
             <Button onClick={() => handleCheck(task._id)}>
-              { task.isComplete ? (            
-              <CheckCircle className={classes.isComplete} color='action' />
-              ) :      
-            ( 
-              <CheckCircle color='action' />
-            )}
+              {task.isComplete ? (
+                <CheckCircle className={classes.isComplete} color='action' />
+              ) : (
+                <CheckCircle color='action' />
+              )}
             </Button>
 
-            <Button onClick={ () => handleOnUpdateClick(task._id) }>
+            <Button onClick={() => handleOnUpdateClick(task._id)}>
               <Create color='primary' />
             </Button>
-            <Button onClick={ () => handleDelete(task._id)} >
+            <Button onClick={() => handleDelete(task._id)}>
               <Delete color='secondary' />
             </Button>
           </ButtonGroup>

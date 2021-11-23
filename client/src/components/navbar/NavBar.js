@@ -1,6 +1,13 @@
 import React from "react";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
-import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
+import {
+  AppBar,
+  Typography,
+  Toolbar,
+  Button,
+  Checkbox,
+} from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   linkStyle: {
     textDecoration: "none",
     color: "black",
+    fontFamily: "M PLUS 2",
   },
   authButton: {
     flexGrow: 1,
@@ -21,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
   navBar: {
     backgroundColor: "#f4f4f6",
     color: "black",
+  },
+  logo: {
+    width: "50px",
+    length: "50px",
   },
 }));
 
@@ -41,17 +53,23 @@ const NavBar = () => {
       <AppBar position='static'>
         <Toolbar className={classes.navBar}>
           {auth._id ? (
-            <Typography variant='h4' className={classes.root}>
-              <Link className={classes.linkStyle} to='/inbox'>
-                Mindful List
-              </Link>
-            </Typography>
+            <>
+              <CheckBoxIcon color='primary' className={classes.logo} />
+              <Typography variant='h5' className={classes.root}>
+                <Link className={classes.linkStyle} to='/inbox'>
+                  Mindful List
+                </Link>
+              </Typography>
+            </>
           ) : (
-            <Typography variant='h4' className={classes.root}>
-              <Link className={classes.linkStyle} to='/'>
-                Mindful List
-              </Link>
-            </Typography>
+            <>
+              <CheckBoxIcon color='primary' className={classes.logo} />
+              <Typography variant='h5' className={classes.root}>
+                <Link className={classes.linkStyle} to='/'>
+                  Mindful List
+                </Link>
+              </Typography>
+            </>
           )}
           {auth._id ? (
             <>
