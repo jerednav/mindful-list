@@ -46,7 +46,7 @@ const NavBar = () => {
 
   const handleSignOut = () => {
     dispatch(signOut());
-    navigate("SignIn");
+    navigate("./");
   };
   return (
     <>

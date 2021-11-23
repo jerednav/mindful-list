@@ -1,10 +1,11 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signIn } from "../../store/actions/authActions";
 
 function DemoButton() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -15,7 +16,7 @@ function DemoButton() {
         password: "aceyacey",
       })
     );
-    <Navigate to='/inbox' />;
+    navigate("/inbox");
   };
 
   return (
