@@ -37,5 +37,7 @@ Mindful List ia minimal and simple app to organize and manage your tasks.
 
 ### Goals
 - [ ] Create list categories of tasks for organization
+- [ ] Create weekly/daily lists
+- [ ] Use calendar to assign future tasks
 - [ ] Sign in using Google
 - [ ] Shared task lists to collaborate with others
